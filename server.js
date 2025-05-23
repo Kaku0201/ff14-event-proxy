@@ -1,6 +1,5 @@
-// server.js - playwright 버전
 import express from 'express';
-import { chromium } from 'playwright';
+import puppeteer from 'puppeteer';
 import cors from 'cors';
 
 const app = express();
@@ -10,8 +9,9 @@ app.use(cors());
 
 app.get('/events', async (req, res) => {
   try {
-    const browser = await chromium.launch({
-      headless: true,
+    const browser = await puppeteer.launch({
+      headless: 'new',
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
     const page = await browser.newPage();

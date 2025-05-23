@@ -1,7 +1,7 @@
 // server.js - Render 호환 puppeteer-core 버전
 import express from 'express';
 import puppeteer from 'puppeteer-core';
-import { executablePath } from 'puppeteer';
+import { executablePath } from 'puppeteer-core';
 import cors from 'cors';
 
 const app = express();

@@ -16,7 +16,7 @@ app.get('/events', async (req, res) => {
     });
 
     const page = await browser.newPage();
-    await page.goto('https://ff14.co.kr/news/event/', {
+    await page.goto('https://www.ff14.co.kr/news/event/', {
       waitUntil: 'domcontentloaded',
     });
 
@@ -26,7 +26,7 @@ app.get('/events', async (req, res) => {
         const title = el.querySelector('.tit')?.innerText.trim() || '제목 없음';
         const date = el.querySelector('.date')?.innerText.trim() || '';
         const href = el.getAttribute('href') || '';
-        const link = 'https://ff14.co.kr' + href;
+        const link = 'https://www.ff14.co.kr' + href;
 
         items.push({ title, date, link });
       });

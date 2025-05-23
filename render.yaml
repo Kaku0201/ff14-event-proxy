@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: ff14-event-proxy
+    env: docker
+    plan: free
+    autoDeploy: true

@@ -1,6 +1,6 @@
 import express from 'express';
 import puppeteer from 'puppeteer-core';
-import { executablePath } from 'puppeteer_core';
+import { executablePath } from 'puppeteer-core';
 import cors from 'cors';
 
 const app = express();

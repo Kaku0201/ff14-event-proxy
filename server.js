@@ -1,5 +1,7 @@
+// server.js - Render 호환 puppeteer-core 버전
 import express from 'express';
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
+import { executablePath } from 'puppeteer';
 import cors from 'cors';
 
 const app = express();
@@ -11,6 +13,7 @@ app.get('/events', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
       headless: 'new',
+      executablePath: executablePath(), // Render 환경에서 자동 경로 사용
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 

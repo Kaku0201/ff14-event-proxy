@@ -1,3 +1,4 @@
+// server.js - Docker + Puppeteer 완전 자동화 크롤링 서버
 import express from 'express';
 import puppeteer from 'puppeteer';
 import cors from 'cors';
@@ -10,7 +11,7 @@ app.use(cors());
 app.get('/events', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
-      headless: 'new',
+      headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 

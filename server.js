@@ -1,34 +1,32 @@
-// server.js - Docker + Puppeteer 완전 자동화 크롤링 서버
 import express from 'express';
 import puppeteer from 'puppeteer';
 import cors from 'cors';
 
 const app = express();
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
 app.get('/events', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: 'new',
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
     const page = await browser.newPage();
-
     await page.goto('https://ff14.co.kr/news/event/', {
       waitUntil: 'domcontentloaded',
-      timeout: 15000,
     });
 
     const events = await page.evaluate(() => {
       const items = [];
-      document.querySelectorAll('.list_board.list_thumb li').forEach((el) => {
+      document.querySelectorAll('.event_list a').forEach((el) => {
         const title = el.querySelector('.tit')?.innerText.trim() || '제목 없음';
         const date = el.querySelector('.date')?.innerText.trim() || '';
-        const href = el.querySelector('a')?.getAttribute('href') || '';
+        const href = el.getAttribute('href') || '';
         const link = 'https://ff14.co.kr' + href;
+
         items.push({ title, date, link });
       });
       return items;

@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
+    "postinstall": "puppeteer install --browser chromium"
   },
   "dependencies": {
     "cors": "^2.8.5",

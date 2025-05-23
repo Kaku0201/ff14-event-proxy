@@ -1,6 +1,6 @@
 // server.js - Render에서 puppeteer-core 사용 최종 버전
 import express from 'express';
-import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
 import cors from 'cors';
 
 const app = express();

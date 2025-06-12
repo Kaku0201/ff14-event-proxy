@@ -8,6 +8,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
+// ✅ 루트 확인용 응답 추가
+app.get('/', (req, res) => {
+  res.send('Server is alive!');
+});
+
 app.get('/events', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
